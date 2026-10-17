@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f7f4">
+  <meta name="description" content="A considered collection of independent hotels. Find a stay that feels like yours with Aurel.">
+  <title>Aurel — Find your kind of stay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="#home" aria-label="Aurel home">aurel<span>.</span></a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+      <i data-lucide="menu"></i>
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+      <a class="nav-link is-active" href="#stays">Stays</a>
+      <a class="nav-link" href="#about">Our approach</a>
+      <a class="nav-link" href="#journal">Journal</a>
+    </nav>
+    <a class="header-action" href="#search">Find a stay <i data-lucide="arrow-up-right"></i></a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2200&q=85" alt="Sunlit boutique hotel room with a terrace and a view of the sea">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow hero-eyebrow"><span></span> Independent stays, thoughtfully found</p>
+        <h1 id="hero-title">Somewhere<br>to <em>settle in.</em></h1>
+        <p class="hero-copy">A small collection of places with a strong sense of place. Find the one that feels like yours.</p>
+        <a class="hero-link" href="#stays">Explore the collection <i data-lucide="arrow-down-right"></i></a>
+      </div>
+      <div class="hero-caption"><span>01 — 04</span><span>Casa Marea, Mallorca</span></div>
+    </section>
+
+    <section class="search-wrap" id="search" aria-label="Find a hotel">
+      <form class="search-panel" id="search-form">
+        <label class="search-field destination-field">
+          <span class="field-label"><i data-lucide="map-pin"></i> Destination</span>
+          <select id="destination" name="destination">
+            <option value="all">Anywhere</option>
+            <option value="coast">By the coast</option>
+            <option value="city">A city break</option>
+            <option value="country">Countryside</option>
+          </select>
+        </label>
+        <label class="search-field">
+          <span class="field-label"><i data-lucide="calendar-days"></i> Check in</span>
+          <input type="date" id="check-in" name="check-in" aria-label="Check-in date">
+        </label>
+        <label class="search-field">
+          <span class="field-label"><i data-lucide="calendar-days"></i> Check out</span>
+          <input type="date" id="check-out" name="check-out" aria-label="Check-out date">
+        </label>
+        <label class="search-field guests-field">
+          <span class="field-label"><i data-lucide="users"></i> Guests</span>
+          <select id="guests" name="guests">
+            <option value="1">1 guest</option>
+            <option value="2" selected>2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5+ guests</option>
+          </select>
+        </label>
+        <button class="search-button" type="submit" aria-label="Search stays"><i data-lucide="search"></i><span>Find a stay</span></button>
+      </form>
+    </section>
+
+    <section class="collection section-shell" id="stays" aria-labelledby="collection-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">A little less ordinary</p>
+          <h2 id="collection-title">Stays worth<br class="mobile-break"> staying for.</h2>
+        </div>
+        <p class="section-intro">Places chosen for their character, their people, and the feeling you take home.</p>
+      </div>
+
+      <div class="collection-toolbar">
+        <div class="filter-tabs" role="tablist" aria-label="Filter stays">
+          <button class="filter-tab is-selected" type="button" role="tab" aria-selected="true" data-filter="all">All stays <span>04</span></button>
+          <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="coast">Coast</button>
+          <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="city">City</button>
+          <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="country">Country</button>
+        </div>
+        <button class="sort-button" type="button" id="sort-button"><i data-lucide="arrow-down-wide-narrow"></i> <span>Curated for you</span></button>
+      </div>
+
+      <p class="results-message" id="results-message" aria-live="polite"></p>
+
+      <div class="hotel-grid" id="hotel-grid" aria-live="polite" aria-busy="false">
+        <div class="skeleton-card" aria-hidden="true"><div class="skeleton-image"></div><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-title"></div><div class="skeleton-line skeleton-meta"></div></div>
+        <div class="skeleton-card" aria-hidden="true"><div class="skeleton-image"></div><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-title"></div><div class="skeleton-line skeleton-meta"></div></div>
+        <div class="skeleton-card" aria-hidden="true"><div class="skeleton-image"></div><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-title"></div><div class="skeleton-line skeleton-meta"></div></div>
+        <div class="skeleton-card" aria-hidden="true"><div class="skeleton-image"></div><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-title"></div><div class="skeleton-line skeleton-meta"></div></div>
+        <article class="hotel-card" data-category="coast" data-name="Casa Marea">
+          <a class="hotel-image-link" href="#booking" data-hotel="Casa Marea" aria-label="Book Casa Marea">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1100&q=80" alt="Quiet Mediterranean hotel beside a pool" loading="lazy">
+            <span class="image-label">GUEST FAVOURITE</span>
+          </a>
+          <div class="hotel-info">
+            <div><p class="hotel-location">Mallorca, Spain <span>·</span> Coast</p><h3>Casa Marea</h3></div>
+            <p class="hotel-rating"><i data-lucide="star"></i> 4.98</p>
+          </div>
+          <div class="hotel-meta"><span>Slow days by the sea</span><span>From <strong>€240</strong> / night</span></div>
+        </article>
+
+        <article class="hotel-card" data-category="city" data-name="The Hoxton House">
+          <a class="hotel-image-link" href="#booking" data-hotel="The Hoxton House" aria-label="Book The Hoxton House">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1100&q=80" alt="Elegant city hotel with a garden courtyard" loading="lazy">
+            <span class="image-label">DESIGN HOTEL</span>
+          </a>
+          <div class="hotel-info">
+            <div><p class="hotel-location">Copenhagen, Denmark <span>·</span> City</p><h3>The Hoxton House</h3></div>
+            <p class="hotel-rating"><i data-lucide="star"></i> 4.91</p>
+          </div>
+          <div class="hotel-meta"><span>A local's city hideaway</span><span>From <strong>€195</strong> / night</span></div>
+        </article>
+
+        <article class="hotel-card" data-category="country" data-name="Casa Oliva">
+          <a class="hotel-image-link" href="#booking" data-hotel="Casa Oliva" aria-label="Book Casa Oliva">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1100&q=80" alt="Warm and airy country house interior with natural materials" loading="lazy">
+            <span class="image-label">SLOW LIVING</span>
+          </a>
+          <div class="hotel-info">
+            <div><p class="hotel-location">Alentejo, Portugal <span>·</span> Country</p><h3>Casa Oliva</h3></div>
+            <p class="hotel-rating"><i data-lucide="star"></i> 4.96</p>
+          </div>
+          <div class="hotel-meta"><span>Room to breathe, and then some</span><span>From <strong>€210</strong> / night</span></div>
+        </article>
+
+        <article class="hotel-card" data-category="coast" data-name="The Salt House">
+          <a class="hotel-image-link" href="#booking" data-hotel="The Salt House" aria-label="Book The Salt House">
+            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1100&q=80" alt="Relaxed coastal hotel room in soft natural light" loading="lazy">
+            <span class="image-label">JUST DISCOVERED</span>
+          </a>
+          <div class="hotel-info">
+            <div><p class="hotel-location">Cornwall, England <span>·</span> Coast</p><h3>The Salt House</h3></div>
+            <p class="hotel-rating"><i data-lucide="star"></i> 4.89</p>
+          </div>
+          <div class="hotel-meta"><span>Atlantic air, fireside evenings</span><span>From <strong>£175</strong> / night</span></div>
+        </article>
+      </div>
+      <div class="empty-state" id="empty-state" hidden>
+        <i data-lucide="map"></i>
+        <h3>No stays found just yet.</h3>
+        <p>Try a different destination to discover more places.</p>
+        <button class="text-button" type="button" id="reset-filters">See all stays <i data-lucide="arrow-right"></i></button>
+      </div>
+      <button class="load-more" type="button" id="load-more">Discover the collection <i data-lucide="arrow-right"></i></button>
+    </section>
+
+    <section class="manifesto" id="about" aria-labelledby="manifesto-title">
+      <div class="manifesto-image">
+        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1400&q=85" alt="A peaceful, sunlit villa surrounded by Mediterranean greenery" loading="lazy">
+        <span class="image-note">A slower kind of getaway</span>
+      </div>
+      <div class="manifesto-copy">
+        <p class="eyebrow">The Aurel point of view</p>
+        <h2 id="manifesto-title">Good places.<br><em>Good people.</em><br>Good stories.</h2>
+        <p>We believe where you stay should be part of the story. So we look beyond the star rating — for thoughtful hosts, details with a point of view, and places that make you feel at home in somewhere new.</p>
+        <a class="underlined-link" href="#journal">A little more about us <i data-lucide="arrow-up-right"></i></a>
+      </div>
+    </section>
+
+    <section class="journal section-shell" id="journal" aria-labelledby="journal-title">
+      <div class="journal-heading">
+        <div><p class="eyebrow">Notes from elsewhere</p><h2 id="journal-title">A good place to start.</h2></div>
+        <a class="underlined-link" href="#newsletter">Read the journal <i data-lucide="arrow-up-right"></i></a>
+      </div>
+      <div class="journal-grid">
+        <a class="journal-card" href="#stays">
+          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=80" alt="Colourful houses along the Italian coast" loading="lazy">
+          <span class="journal-category">THE FIELD GUIDE · 6 MIN READ</span>
+          <h3>A long weekend, somewhere along the Ligurian coast</h3>
+          <span class="journal-arrow"><i data-lucide="arrow-up-right"></i></span>
+        </a>
+        <a class="journal-card" href="#stays">
+          <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1000&q=80" alt="A quiet mountain lodge surrounded by trees" loading="lazy">
+          <span class="journal-category">PEOPLE & PLACES · 4 MIN READ</span>
+          <h3>What makes a hotel feel like it belongs?</h3>
+          <span class="journal-arrow"><i data-lucide="arrow-up-right"></i></span>
+        </a>
+        <a class="journal-card" href="#stays">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="A sunlit landscape looking out across a remote countryside" loading="lazy">
+          <span class="journal-category">THE SLOW LIST · 8 MIN READ</span>
+          <h3>Five places that make doing nothing feel like everything</h3>
+          <span class="journal-arrow"><i data-lucide="arrow-up-right"></i></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
+      <div><p class="eyebrow">A note from us, now and then</p><h2 id="newsletter-title">For the love of getting away.</h2><p>Thoughtful stays, little discoveries, and places to put on your list.</p></div>
+      <form class="newsletter-form" id="newsletter-form">
+        <label class="visually-hidden" for="email">Your email address</label>
+        <input id="email" type="email" placeholder="Your email address" required>
+        <button type="submit" aria-label="Subscribe to the newsletter"><i data-lucide="arrow-right"></i></button>
+        <p class="newsletter-message" id="newsletter-message" aria-live="polite">No noise. Unsubscribe whenever.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="wordmark footer-wordmark" href="#home" aria-label="Aurel home">aurel<span>.</span></a>
+    <p>Good stays, thoughtfully found.</p>
+    <nav aria-label="Footer navigation"><a href="#stays">Stays</a><a href="#about">Our approach</a><a href="#journal">Journal</a><a href="mailto:hello@aurel.stays">Get in touch</a></nav>
+    <span class="copyright">© 2026 Aurel Stays</span>
+  </footer>
+
+  <dialog class="booking-dialog" id="booking">
+    <button class="dialog-close" type="button" aria-label="Close booking dialog"><i data-lucide="x"></i></button>
+    <p class="eyebrow">A good choice</p>
+    <h2>Make it yours.</h2>
+    <p class="dialog-hotel" id="dialog-hotel">Your next stay is waiting.</p>
+    <form id="booking-form">
+      <label for="booking-email">Where should we send your booking details?</label>
+      <input id="booking-email" type="email" placeholder="you@example.com" required>
+      <button class="dialog-submit" type="submit">Continue to booking <i data-lucide="arrow-right"></i></button>
+    </form>
+    <p class="dialog-message" id="dialog-message" aria-live="polite"></p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) window.lucide.createIcons();
+
+      const menuButton = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".primary-nav");
+      menuButton.addEventListener("click", () => {
+        const expanded = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!expanded));
+        menuButton.setAttribute("aria-label", expanded ? "Open navigation" : "Close navigation");
+        nav.classList.toggle("is-open", !expanded);
+      });
+      nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation");
+      }));
+
+      const cards = [...document.querySelectorAll(".hotel-card")];
+      const hotelGrid = document.getElementById("hotel-grid");
+      hotelGrid.classList.add("is-loading");
+      hotelGrid.setAttribute("aria-busy", "true");
+      window.setTimeout(() => {
+        hotelGrid.classList.remove("is-loading");
+        hotelGrid.setAttribute("aria-busy", "false");
+      }, 520);
+      const emptyState = document.getElementById("empty-state");
+      const resultsMessage = document.getElementById("results-message");
+      const loadMore = document.getElementById("load-more");
+      let activeFilter = "all";
+      let alphabetical = false;
+
+      function updateHotels(filter = activeFilter) {
+        activeFilter = filter;
+        const visible = cards.filter(card => filter === "all" || card.dataset.category === filter);
+        cards.forEach(card => { card.hidden = !visible.includes(card); });
+        emptyState.hidden = visible.length > 0;
+        loadMore.hidden = visible.length === 0;
+        resultsMessage.textContent = filter === "all" ? "" : `${visible.length} ${visible.length === 1 ? "stay" : "stays"} to explore`;
+        document.querySelectorAll(".filter-tab").forEach(tab => {
+          const selected = tab.dataset.filter === filter;
+          tab.classList.toggle("is-selected", selected);
+          tab.setAttribute("aria-selected", String(selected));
+        });
+      }
+
+      document.querySelectorAll(".filter-tab").forEach(tab => tab.addEventListener("click", () => updateHotels(tab.dataset.filter)));
+      document.getElementById("reset-filters").addEventListener("click", () => updateHotels("all"));
+      document.getElementById("sort-button").addEventListener("click", event => {
+        alphabetical = !alphabetical;
+        [...cards].sort((a, b) => alphabetical
+          ? a.dataset.name.localeCompare(b.dataset.name)
+          : cards.indexOf(a) - cards.indexOf(b)
+        ).forEach(card => hotelGrid.appendChild(card));
+        event.currentTarget.querySelector("span").textContent = alphabetical ? "Name, A to Z" : "Curated for you";
+      });
+
+      const today = new Date();
+      const dateString = date => {
+        const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+        return localDate.toISOString().slice(0, 10);
+      };
+      const checkIn = document.getElementById("check-in");
+      const checkOut = document.getElementById("check-out");
+      checkIn.min = dateString(today);
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      checkOut.min = dateString(tomorrow);
+      checkIn.addEventListener("change", () => {
+        const nextDay = new Date(`${checkIn.value}T12:00:00`);
+        nextDay.setDate(nextDay.getDate() + 1);
+        checkOut.min = dateString(nextDay);
+        if (checkOut.value && checkOut.value <= checkIn.value) checkOut.value = "";
+      });
+
+      document.getElementById("search-form").addEventListener("submit", event => {
+        event.preventDefault();
+        if (checkIn.value && checkOut.value && checkOut.value <= checkIn.value) {
+          checkOut.setCustomValidity("Check-out must be after check-in.");
+          checkOut.reportValidity();
+          return;
+        }
+        checkOut.setCustomValidity("");
+        const destination = document.getElementById("destination").value;
+        updateHotels(destination);
+        document.getElementById("stays").scrollIntoView({ behavior: "smooth" });
+        if (destination === "all") {
+          resultsMessage.textContent = "Here are a few places we think you’ll love.";
+        }
+      });
+
+      const bookingDialog = document.getElementById("booking");
+      document.querySelectorAll(".hotel-image-link").forEach(link => link.addEventListener("click", event => {
+        event.preventDefault();
+        document.getElementById("dialog-hotel").textContent = link.dataset.hotel;
+        document.getElementById("dialog-message").textContent = "";
+        bookingDialog.showModal();
+      }));
+      document.querySelector(".dialog-close").addEventListener("click", () => bookingDialog.close());
+      bookingDialog.addEventListener("click", event => {
+        if (event.target === bookingDialog) bookingDialog.close();
+      });
+      document.getElementById("booking-form").addEventListener("submit", event => {
+        event.preventDefault();
+        document.getElementById("dialog-message").textContent = "Thanks. Your booking enquiry is ready — our team will be in touch shortly.";
+        event.currentTarget.reset();
+      });
+
+      document.getElementById("load-more").addEventListener("click", () => {
+        document.getElementById("journal").scrollIntoView({ behavior: "smooth" });
+      });
+
+      document.getElementById("newsletter-form").addEventListener("submit", event => {
+        event.preventDefault();
+        const message = document.getElementById("newsletter-message");
+        message.textContent = "You’re on the list. Look out for a note from us soon.";
+        event.currentTarget.querySelector("button").disabled = true;
+        event.currentTarget.querySelector("input").disabled = true;
+      });
+
+      const navLinks = [...document.querySelectorAll(".primary-nav a")];
+      const sections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach(link => link.classList.toggle("is-active", link.hash === `#${entry.target.id}`));
+        });
+      }, { rootMargin: "-30% 0px -60% 0px" });
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+</body>
+</html>
